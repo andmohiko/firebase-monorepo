@@ -1,0 +1,14 @@
+## Compiled JavaScript files
+**/*.js
+**/*.js.map
+
+# babel.config.js must be under version control
+!babel.config.js
+!.eslintrc.js
+
+# Typescript v1 declaration files
+typings/
+
+node_modules/
+
+.runtimeconfig.json
