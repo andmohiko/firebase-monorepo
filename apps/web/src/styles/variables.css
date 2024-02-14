@@ -1,0 +1,20 @@
+:root {
+  /* Brand Colors */
+  --color-primary: #252548;
+
+  /* Background Colors */
+  --color-bg-white: #ffffff;
+
+  /* Text Colors */
+  --color-text-black: #2e3542;
+  --color-text-white: #ffffff;
+
+  /* Backgrounds */
+  --bg-white0: #ffffff;
+
+  /* Border Colors */
+  --color-border-gray0: #aeb7ce;
+
+  /* Base Colors */
+  --color-base-white: #ffffff;
+}

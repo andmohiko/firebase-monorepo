@@ -1,0 +1,47 @@
+{
+  "name": "@firebase-monorepo/web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "lint:tsc": "tsc --noEmit",
+    "lint:eslint": "eslint src --ext .js,.ts",
+    "lint:prettier": "prettier --check src",
+    "format:prettier": "prettier --write src --config ../../.prettierrc.js",
+    "lint:cspell": "cspell -c ../../cspell.json src/**/*",
+    "clean": "rimraf -rf .turbo node_modules .next"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.3.4",
+    "@mantine/core": "^7.4.1",
+    "@mantine/dates": "^7.4.1",
+    "@mantine/dropzone": "^7.4.1",
+    "@mantine/hooks": "^7.4.1",
+    "@mantine/notifications": "^7.4.1",
+    "@sentry/nextjs": "^7.98.0",
+    "classnames": "^2.5.1",
+    "dayjs": "^1.11.10",
+    "firebase": "^10.7.1",
+    "next": "14.0.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-hook-form": "7.43.2",
+    "react-icons": "^5.0.1",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/react": "18.2.47",
+    "@types/react-dom": "18.2.18",
+    "eslint-config-next": "^14.0.4",
+    "sass": "^1.69.7",
+    "typescript": "5.3.3"
+  },
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=6.0.0"
+  }
+}

@@ -1,0 +1,76 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica Neue,
+    sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: 'YuGothic', sans-serif;
+  clear: both;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'YuGothic', sans-serif;
+}
+
+p {
+  font-family: 'YuGothic', sans-serif;
+  margin: 0;
+}
+
+input,
+textarea {
+  font-style: normal;
+  font-weight: 300;
+  line-height: 18px;
+  font-size: 14px;
+  font-family: 'YuGothic', sans-serif;
+}
+
+input {
+  padding: 7px 11px;
+}
+
+textarea {
+  padding: 15px 11px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  font-style: italic;
+  background-repeat: no-repeat;
+  background-size: cover;
+  shape-margin: 0.75rem;
+}
