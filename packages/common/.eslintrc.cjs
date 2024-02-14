@@ -1,13 +1,10 @@
 module.exports = {
   root: true,
-  extends: ['@dials2/eslint-config'],
+  extends: ['../../.eslintrc.cjs'],
   parserOptions: {
     project: './tsconfig.json',
   },
   settings: {
-    next: {
-      rootDir: './packages/common',
-    },
     'import/resolver': {
       node: {
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
