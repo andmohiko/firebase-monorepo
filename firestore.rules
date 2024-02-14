@@ -1,0 +1,20 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 送られてきたリクエストのデータ
+    function requestData() {
+      return request.resource.data;
+    }
+
+    // ログイン済かどうか
+    function isSignedIn() {
+      return request.auth.uid != null;
+    }
+
+    // ユーザーIDが一致するかどうか
+    function isUser(userId) {
+      return request.auth.uid == userId;
+    }
+  }
+}

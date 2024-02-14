@@ -8,14 +8,12 @@
 
 本プロジェクトでは [Turborepo](https://turbo.build/repo/docs) によるマルチレポ構成を採用しています.
 
-| type | name                                                          | description 　　　　　　       | default port |
-| ---- | ------------------------------------------------------------- | ------------------------------ | ------------ |
-| app  | [@firebase-monorepo/console](./apps/console/)                 | 管理画面                       | ---          |
-| app  | [@firebase-monorepo/web](./apps/web/)                         | Web アプリ本体                 | ---          |
-| app  | [@firebase-monorepo/functions](./apps/functions/)             | Cloud Functions                | ---          |
-| pkg  | [@firebase-monorepo/common](./packages/common/)               | 共通で使用する型定義など       | ---          |
-| pkg  | [@firebase-monorepo/eslint-config](./packages/eslint-config/) | ESLint の設定 　　　　　　     | ---          |
-| pkg  | [@firebase-monorepo/ts-config](./packages/ts-config/)         | TypeScript の設定 　　　　　　 | ---          |
+| type | name                                              | description 　　　　　　 | default port |
+| ---- | ------------------------------------------------- | ------------------------ | ------------ |
+| app  | [@firebase-monorepo/console](./apps/console/)     | 管理画面                 | ---          |
+| app  | [@firebase-monorepo/web](./apps/web/)             | Web アプリ本体           | ---          |
+| app  | [@firebase-monorepo/functions](./apps/functions/) | Cloud Functions          | ---          |
+| pkg  | [@firebase-monorepo/common](./packages/common/)   | 共通で使用する型定義など | ---          |
 
 ## 環境構築
 
