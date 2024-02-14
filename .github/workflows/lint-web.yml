@@ -1,0 +1,41 @@
+name: Run @firebase-monorepo/web lint
+on:
+  push:
+    paths:
+      - apps/web/src/**
+jobs:
+  lint:
+    name: Run lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8.9.2
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: tsc
+        run: pnpm dials2 lint:tsc
+
+      - name: eslint
+        run: pnpm dials2 lint:eslint
+
+      - name: prettier
+        run: pnpm dials2 lint:prettier
+
+      - name: cspell
+        run: pnpm dials2 lint:cspell
