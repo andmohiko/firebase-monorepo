@@ -14,12 +14,12 @@
   "main": "./src/index.ts",
   "devDependencies": {
     "@firebase/rules-unit-testing": "^3.0.1",
-    "@types/node": "18",
+    "@types/node": "20",
     "typescript": "5.3.3",
     "vitest": "^1.2.1"
   },
   "engines": {
-    "node": ">=18",
+    "node": ">=20",
     "pnpm": ">=6.0.0"
   },
   "dependencies": {
