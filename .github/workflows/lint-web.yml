@@ -29,13 +29,13 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: tsc
-        run: pnpm dials2 lint:tsc
+        run: pnpm web lint:tsc
 
       - name: eslint
-        run: pnpm dials2 lint:eslint
+        run: pnpm web lint:eslint
 
       - name: prettier
-        run: pnpm dials2 lint:prettier
+        run: pnpm web lint:prettier
 
       - name: cspell
-        run: pnpm dials2 lint:cspell
+        run: pnpm web lint:cspell
