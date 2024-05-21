@@ -13,18 +13,10 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  settings: {
-    react: {
-      version: 'detect',
-    },
-  },
+  settings: {},
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:react/recommended',
-    'plugin:react/jsx-runtime',
-    'plugin:react-hooks/recommended',
-    'plugin:jsx-a11y/recommended',
     'plugin:import/recommended',
     'plugin:import/typescript',
     'prettier',
@@ -84,12 +76,6 @@ module.exports = {
         prefix: ['is', 'can', 'should', 'has', 'did', 'will'],
       },
     ],
-    'react/prop-types': 'off',
-    'react/jsx-pascal-case': 'error',
-    // 詳細: https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/self-closing-comp.md
-    'react/self-closing-comp': 'error',
-    // 詳細: https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-curly-brace-presence.md
-    'react/jsx-curly-brace-presence': 'error',
     // 詳細: https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/array-type.md
     '@typescript-eslint/array-type': [
       'error',
