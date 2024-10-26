@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as admin from 'firebase-admin'
-import type { EventContext } from 'firebase-functions'
+import type { EventContext } from 'firebase-functions/v1'
 
 import { db, serverTimestamp } from '~/lib/firebase'
 

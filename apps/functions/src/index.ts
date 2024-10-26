@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import * as functions from 'firebase-functions'
+import * as functions from 'firebase-functions/v1'
 
 import router from './router'
 
