@@ -14,7 +14,7 @@
         "firebase-debug.*.log"
       ],
       "predeploy": [
-        "cd apps/functions && npm run lint:eslint",
+        "cd apps/functions && npm run lint:biome",
         "cd apps/functions && npm run pre-build"
       ]
     }

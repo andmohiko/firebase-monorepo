@@ -1,4 +1,5 @@
 import { ScrollArea } from '@mantine/core'
+import classNames from 'classnames'
 
 import styles from './style.module.scss'
 
@@ -27,7 +28,7 @@ export const GridTable = ({
       }}
     >
       {header.map((column, index) => (
-        <div key={index} className={styles.columnLabel}>
+        <div key={index.toString()} className={styles.columnLabel}>
           {column}
         </div>
       ))}
@@ -57,9 +58,10 @@ export const GridRow = ({
 }: GridRowProps): React.ReactElement => {
   return (
     <div
-      className={styles.gridRow}
-      role="button"
-      tabIndex={0}
+      className={classNames([
+        styles.gridRow,
+        { [styles.clickable]: !!onClick },
+      ])}
       onKeyDown={onClick}
       style={{
         gridTemplateColumns: columns,
