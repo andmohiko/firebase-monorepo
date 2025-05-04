@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 import { check } from 'express-validator'
 
 const router = require('express-promise-router')()

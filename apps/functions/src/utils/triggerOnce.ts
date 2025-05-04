@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as admin from 'firebase-admin'
 import type { FirestoreEvent } from 'firebase-functions/v2/firestore'
 

@@ -21,7 +21,6 @@ const getFontSize = (size: FontSizing): number => {
   return 15
 }
 
-// eslint-disable-next-line no-useless-escape
 const urlPattern = /https?:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+/
 
 export const isExternalLink = (href: string): boolean => {

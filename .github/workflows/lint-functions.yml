@@ -31,11 +31,8 @@ jobs:
       - name: tsc
         run: pnpm functions lint:tsc
 
-      - name: eslint
-        run: pnpm functions lint:eslint
-
-      - name: prettier
-        run: pnpm functions lint:prettier
+      - name: biome
+        run: pnpm web lint:biome
 
       - name: cspell
         run: pnpm functions lint:cspell
