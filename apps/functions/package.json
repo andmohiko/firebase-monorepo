@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "lint:tsc": "tsc --noEmit",
-    "lint:eslint": "eslint --ext .js,.ts .",
-    "lint:prettier": "prettier --check src",
+    "lint:biome": "biome lint ./src",
     "lint:cspell": "cspell -c ../../cspell.json src/**/*",
     "pre-build": "tsc --noEmit && babel src -d lib --extensions .ts",
     "deploy": "firebase deploy --only functions",

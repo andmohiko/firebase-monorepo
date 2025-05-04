@@ -6,8 +6,7 @@
   },
   "scripts": {
     "lint:tsc": "tsc --noEmit",
-    "lint:eslint": "eslint src --ext .js,.ts",
-    "lint:prettier": "prettier --check src",
+    "lint:biome": "biome lint ./src",
     "lint:cspell": "cspell -c ../../cspell.json src/**/*",
     "test": "vitest"
   },
