@@ -23,6 +23,21 @@ importers:
 
   apps/appRouter:
     dependencies:
+      '@radix-ui/react-slot':
+        specifier: ^1.2.3
+        version: 1.2.3(@types/react@19.0.12)(react@19.1.0)
+      class-variance-authority:
+        specifier: ^0.7.1
+        version: 0.7.1
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
+      dayjs:
+        specifier: ^1.11.13
+        version: 1.11.13
+      lucide-react:
+        specifier: ^0.525.0
+        version: 0.525.0(react@19.1.0)
       next:
         specifier: 15.3.5
         version: 15.3.5(react-dom@19.1.0)(react@19.1.0)
@@ -32,6 +47,15 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.1.0(react@19.1.0)
+      react-icons:
+        specifier: ^5.5.0
+        version: 5.5.0(react@19.1.0)
+      tailwind-merge:
+        specifier: ^3.3.1
+        version: 3.3.1
+      tailwindcss-animate:
+        specifier: ^1.0.7
+        version: 1.0.7(tailwindcss@4.1.11)
     devDependencies:
       '@tailwindcss/postcss':
         specifier: ^4
@@ -48,6 +72,9 @@ importers:
       tailwindcss:
         specifier: ^4
         version: 4.1.11
+      tw-animate-css:
+        specifier: ^1.3.5
+        version: 1.3.5
       typescript:
         specifier: ^5
         version: 5.3.3
@@ -3851,6 +3878,33 @@ packages:
   /@protobufjs/utf8@1.1.0:
     resolution: {integrity: sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==}
 
+  /@radix-ui/react-compose-refs@1.1.2(@types/react@19.0.12)(react@19.1.0):
+    resolution: {integrity: sha512-z4eqJvfiNnFMHIIvXP3CY57y2WJs5g2v3X0zm9mEJkrkNv4rDxu+sg9Jh8EkXyeqBkB7SOcboo9dMVqhyrACIg==}
+    peerDependencies:
+      '@types/react': '*'
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+    dependencies:
+      '@types/react': 19.0.12
+      react: 19.1.0
+    dev: false
+
+  /@radix-ui/react-slot@1.2.3(@types/react@19.0.12)(react@19.1.0):
+    resolution: {integrity: sha512-aeNmHnBxbi2St0au6VBVC7JXFlhLlOnvIIlePNniyUNAClzmtAUEY8/pBiK3iHjufOlwA+c20/8jngo7xcrg8A==}
+    peerDependencies:
+      '@types/react': '*'
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+    dependencies:
+      '@radix-ui/react-compose-refs': 1.1.2(@types/react@19.0.12)(react@19.1.0)
+      '@types/react': 19.0.12
+      react: 19.1.0
+    dev: false
+
   /@rollup/plugin-commonjs@28.0.1(rollup@4.35.0):
     resolution: {integrity: sha512-+tNWdlWKbpB3WgBN7ijjYkq9X5uhjmcvyjEght4NmH5fAU++zfQzAJ6wumLS+dNcvwEZhKx2Z+skY8m7v0wGSA==}
     engines: {node: '>=16.0.0 || 14 >= 14.17'}
@@ -5385,6 +5439,12 @@ packages:
 
   /cjs-module-lexer@1.4.3:
     resolution: {integrity: sha512-9z8TZaGM1pfswYeXrUpzPrkx8UnWYdhJclsiYMm6x/w5+nN+8Tf/LnAgfLGQCm59qAOxU8WwHEq2vNwF6i4j+Q==}
+    dev: false
+
+  /class-variance-authority@0.7.1:
+    resolution: {integrity: sha512-Ka+9Trutv7G8M6WT6SeiRWz792K5qEqIGEGzXKhAE6xOWAY6pPH8U+9IY3oCMv6kqTmLsv7Xh/2w2RigkePMsg==}
+    dependencies:
+      clsx: 2.1.1
     dev: false
 
   /classnames@2.5.1:
@@ -7032,6 +7092,14 @@ packages:
       lru-cache: 6.0.0
     dev: false
 
+  /lucide-react@0.525.0(react@19.1.0):
+    resolution: {integrity: sha512-Tm1txJ2OkymCGkvwoHt33Y2JpN5xucVq1slHcgE6Lk0WjDfjgKWor5CdVER8U6DvcfMwh4M8XxmpTiyzfmfDYQ==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+    dependencies:
+      react: 19.1.0
+    dev: false
+
   /magic-string@0.30.12:
     resolution: {integrity: sha512-Ea8I3sQMVXr8JhN4z+H/d8zwo+tYDgHE9+5G4Wnrwhs0gaK9fXTKx0Tw5Xwsd/bCPTTZNRAdpyzvoeORe9LYpw==}
     dependencies:
@@ -7464,6 +7532,7 @@ packages:
   /picomatch@2.3.1:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
+    requiresBuild: true
 
   /picomatch@4.0.2:
     resolution: {integrity: sha512-M7BAV6Rlcy5u+m6oPhAPFgJTzAioX/6B0DxyvDlo9l8+T3nLKbrczg2WLUyzd45L8RqfUMyGPzekbMvX2Ldkwg==}
@@ -8324,9 +8393,20 @@ packages:
     resolution: {integrity: sha512-Cat63mxsVJlzYvN51JmVXIgNoUokrIaT2zLclCXjRd8boZ0004U4KCs/sToJ75C6sdlByWxpYnb5Boif1VSFew==}
     dev: false
 
+  /tailwind-merge@3.3.1:
+    resolution: {integrity: sha512-gBXpgUm/3rp1lMZZrM/w7D8GKqshif0zAymAhbCyIt8KMe+0v9DQ7cdYLR4FHH/cKpdTXb+A/tKKU3eolfsI+g==}
+    dev: false
+
+  /tailwindcss-animate@1.0.7(tailwindcss@4.1.11):
+    resolution: {integrity: sha512-bl6mpH3T7I3UFxuvDEXLxy/VuFxBk5bbzplh7tXI68mwMokNYd1t9qPBHlnyTwfa4JGC4zP516I1hYYtQ/vspA==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || insiders'
+    dependencies:
+      tailwindcss: 4.1.11
+    dev: false
+
   /tailwindcss@4.1.11:
     resolution: {integrity: sha512-2E9TBm6MDD/xKYe+dvJZAmg3yxIEDNRc0jwlNyDg/4Fil2QcSLjFKGVff0lAf1jjeaArlG/M75Ey/EYr/OJtBA==}
-    dev: true
 
   /tapable@2.2.2:
     resolution: {integrity: sha512-Re10+NauLTMCudc7T5WLFLAwDhQ0JWdrMK+9B2M8zR5hRExKmsRDCBA7/aV/pNJFltmBFO5BAMlQFi/vq3nKOg==}
@@ -8505,6 +8585,10 @@ packages:
       turbo-linux-arm64: 2.5.4
       turbo-windows-64: 2.5.4
       turbo-windows-arm64: 2.5.4
+    dev: true
+
+  /tw-animate-css@1.3.5:
+    resolution: {integrity: sha512-t3u+0YNoloIhj1mMXs779P6MO9q3p3mvGn4k1n3nJPqJw/glZcuijG2qTSN4z4mgNRfW5ZC3aXJFLwDtiipZXA==}
     dev: true
 
   /type-fest@0.7.1:
@@ -9001,6 +9085,7 @@ packages:
   /yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+    requiresBuild: true
     dev: false
 
   /zod@3.24.2:
