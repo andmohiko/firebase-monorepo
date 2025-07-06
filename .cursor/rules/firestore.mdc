@@ -1,0 +1,63 @@
+---
+description: 
+globs: **/*.ts
+alwaysApply: false
+---
+---
+description: Rules to write Firestore code
+globs: **/*.ts
+---
+Firestore
+
+- ドメインモデルの型定義はfirestore-design.mdを元に生成する
+- ドメインモデルにはcollection名を含んだidフィールドを追加する
+- Firestoreへのcreateとupdateのための型定義（dto）を記述する
+- FirestoreへのCRUDはinfrastructureディレクトリに記述し、operation関数を実装する
+- Firestoreから取得したデータをアプリケーション内で取り回す際は必ずドメインモデルに変換する
+- ドメインモデルへの変換はoperation関数内で行い、Timestamp型をDate型に変換するためのユーティリティ関数を挟む
+- Firestoreのoperation関数を呼ぶことができるのはカスタムフック内のみに限定する
+- updateのoperation関数を利用する際にはupdatedAtを必ず含める。この際、updateのためのdtoはカスタムフックのレイヤーで定義すること
+
+- 例: usersコレクションの実装例
+```
+// DB設計: firestore-design.md
+- createdAt: Timestamp
+- email: String
+- updatedAt: Timestamp
+
+// ドメインモデルの型定義: User.ts
+export type User = {
+  userId: string
+  createdAt: Date
+  email: string
+  updatedAt: Date
+}
+
+// usersコレクションへのcreateの型定義
+export type CreateUserDto = {
+  createdAt: FieldValue
+  email: User['email']
+  updatedAt: FieldValue
+}
+
+// usersコレクションへのupdateの型定義
+export type UpdateUserDto = {
+  email: User['email']
+  updatedAt?: FieldValue
+}
+
+// usersコレクション内のデータをupdateするoperation関数
+export const updateUserOperation = async (userId: User['id'], dto: UpdateUserDto) => {
+  await setDoc(doc(db, 'usersCollection', userId), dto)
+}
+
+// userをupdateするカスタムフック
+export const useUpdateUserMutation = (userId: User['id']) => {
+  const updateUser = async (data) => {
+    await updateUserOperation({
+      ...data,
+      updatedAt: serverTimestamp,
+    })
+  }
+}
+```

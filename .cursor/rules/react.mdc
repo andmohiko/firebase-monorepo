@@ -1,0 +1,20 @@
+---
+description: Rules to write React
+globs: *.tsx
+alwaysApply: false
+---
+React/Next.js
+
+– 関数型コンポーネントとTypeScriptインターフェースを使用する。
+– 宣言的なJSXを使用する。
+- App Routerを使用する。
+– コンポーネントにはconstを使用する。
+- スタイルはTailwindCSSを使用する。
+– モバイルファーストアプローチを採用する。
+– ’useEffect’、’setState’の使用を最小限に抑える。
+– フォームバリデーションにはZodを使用する。
+– 画像を最適化する：WebPフォーマットを使用し、サイズデータを含め、レイジーローディングを実装する。
+– 予期しないエラーにはエラーバウンダリーを使用する：error.tsxおよびglobal-error.tsxファイルを使用して予期しないエラーを処理し、フォールバックUIを提供する。
+– フォームバリデーションにはreact-hook-formを使用する。
+– Zodを使用して入力スキーマを定義し、堅牢な型チェックとバリデーションを行う。
+– エラーを優雅に処理し、適切なレスポンスを返す。

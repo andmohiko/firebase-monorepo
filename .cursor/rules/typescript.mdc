@@ -1,0 +1,9 @@
+---
+description: Rule for TypeScript
+globs: **/*.ts
+---
+
+# TypeScript
+
+- 関数の引数と返り値は必ず型を明記する。
+- セミコロンは省略する。
