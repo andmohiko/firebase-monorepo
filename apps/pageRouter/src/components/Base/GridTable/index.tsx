@@ -1,9 +1,7 @@
 import { ScrollArea } from '@mantine/core'
 import classNames from 'classnames'
-
-import styles from './style.module.scss'
-
 import { LoadingAnimation } from '~/components/Base/Loading'
+import styles from './style.module.css'
 
 type Props = {
   header: Array<React.ReactNode>

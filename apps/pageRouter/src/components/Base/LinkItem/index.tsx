@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import styles from '~/components/Base/LinkItem/style.module.scss'
+import styles from './style.module.css'
 
 type Props = {
   href: string
@@ -21,7 +21,7 @@ const getFontSize = (size: FontSizing): number => {
   return 15
 }
 
-const urlPattern = /https?:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+/
+const urlPattern = /https?:\/\/[-_.!~*'()a-zA-Z0-9;\/?:\@&=+\$,%#]+/
 
 export const isExternalLink = (href: string): boolean => {
   return urlPattern.test(href)
