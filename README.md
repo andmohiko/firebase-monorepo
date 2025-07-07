@@ -2,7 +2,30 @@
 
 # Firebase Monorepo
 
-この README では、開発環境手順等にのみ言及します.
+## 技術構成
+
+- フロントエンド
+  - フレームワーク：Next.js Page Router
+  - 言語：TypeScript
+  - コンポーネントライブラリ：Mantine
+- サーバーサイド
+  - Cloud Functions for Firebase
+  - 言語：TypeScript
+  - APIフレームワーク：Express
+- データベース
+  - Firestore
+- インフラ
+  - フロントエンド：Vercel
+  - サーバーサイド：Cloud Functions for Firebase
+  - 日時バッチ：Cloud Scheduler
+- 開発ツール
+  - pnpm
+  - Biome
+
+## ドキュメント
+
+- プロジェクト概要：README.md
+- データベース設計：firestore-design.md
 
 ## パッケージ構成
 
@@ -52,6 +75,43 @@ $ pnpm install
 $ pnpm dev
 ```
 
+## デプロイ手順
+
+### フロントエンド
+
+VercelのCIによる自動デプロイが走ります。
+Pull Requestごとにデプロイされ、プレビュー環境も作成されます。
+
+ビルドが通ることを手元で確認する際は次のコマンドを実行してください。
+
+```sh
+$ pnpm web build
+```
+
+### サーバーサイド
+
+Firebase CLIを使ってデプロイすることができます。
+
+```sh
+firebase deploy --only functions
+```
+
+### インフラ
+
+Firestoreの設定もFirebase CLIを使ってデプロイすることができます。
+
+```sh
+firebase deploy --only firestore
+```
+
 ## その他の CLI
 
-TODO:
+### lintとformat
+
+```sh
+# lintエラーを表示
+$ pnpm check
+
+# lintエラーを自動修正
+$ pnpm format
+```
