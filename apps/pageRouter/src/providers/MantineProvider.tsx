@@ -2,8 +2,8 @@ import '@mantine/core/styles.css'
 import '@mantine/dates/styles.css'
 import '@mantine/notifications/styles.css'
 import {
-  MantineProvider as MantineNativeProvider,
   createTheme,
+  MantineProvider as MantineNativeProvider,
 } from '@mantine/core'
 import { Notifications } from '@mantine/notifications'
 
