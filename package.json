@@ -16,7 +16,8 @@
     "lint": "turbo run lint",
     "lint:fix": "turbo run lint:fix",
     "clean": "turbo run clean && rimraf node_modules",
-    "format": "prettier --write .",
+    "check": "biome check ./apps/*/src/**/* ./packages/*/src/**/*",
+    "format": "biome format --write ./apps/*/src/**/* ./packages/*/src/**/*",
     "cspell": "cspell -c ./cspell.json './apps/*/src/**/*' './packages/*/src/**/*'"
   },
   "devDependencies": {
