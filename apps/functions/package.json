@@ -6,7 +6,7 @@
     "lint:tsc": "tsc --noEmit",
     "lint:biome": "biome lint ./src",
     "lint:cspell": "cspell -c ../../cspell.json src/**/*",
-    "pre-build": "tsc --noEmit && babel src -d lib --extensions .ts",
+    "pre-build": "tsup",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log"
   },
@@ -29,6 +29,7 @@
     "@types/node": "^20.11.3",
     "@types/request-promise": "^4.1.51",
     "babel-plugin-module-resolver": "^5.0.2",
+    "tsup": "^8.5.0",
     "typescript": "5.3.3"
   },
   "engines": {
