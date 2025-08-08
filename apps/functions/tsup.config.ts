@@ -11,7 +11,7 @@ export default defineConfig({
   shims: true, // Node.js のグローバルAPI shimを使う場合
   esbuildOptions(options) {
     options.alias = {
-      '@morning-call/common': '../../packages/common/src',
+      '@firebase-monorepo/common': '../../packages/common/src',
     }
   },
 })
