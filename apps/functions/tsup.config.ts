@@ -5,6 +5,7 @@ export default defineConfig({
   outDir: 'lib',
   target: 'node18',
   format: ['cjs'],
+  sourcemap: true,
   dts: false, // Firebase deploy では型定義は不要
   external: ['firebase-functions', 'firebase-admin'], // Cloud Functions が持つ依存
   clean: true,
