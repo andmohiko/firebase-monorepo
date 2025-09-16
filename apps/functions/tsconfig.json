@@ -1,19 +1,26 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "module": "commonjs",
-    "noUnusedLocals": true,
-    "outDir": "lib",
-    "sourceMap": true,
-    "target": "ESNext",
+    // 変換は tsup が担当。tsc は型チェック専用
+    "noEmit": true,
+    "isolatedModules": true,
+    // バンドラ（tsup）に合わせる
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "target": "ES2022",
+    "verbatimModuleSyntax": true,
+    // パスの設定
     "baseUrl": ".",
     "paths": {
       "~/*": ["./src/*"],
       "~": ["./src"],
       "@firebase-monorepo/common": ["../../packages/common/src"]
-    }
+    },
+    "resolveJsonModule": true,
+    "noUnusedLocals": true,
+    "types": ["vitest/globals", "node"],
   },
   "compileOnSave": true,
-  "include": ["src"],
+  "include": ["src", "test"],
   "exclude": ["node_modules", "lib"]
 }
