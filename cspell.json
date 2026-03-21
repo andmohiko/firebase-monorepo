@@ -2,6 +2,7 @@
   "version": "0.2",
   "language": "en",
   "words": [
+    "andmohiko",
     "autosize",
     "dropzone",
     "firebase",
@@ -14,6 +15,7 @@
     "nextjs",
     "predeploy",
     "recaptcha",
+    "tanstack",
     "turbopack",
     "vercel",
     "webp"
