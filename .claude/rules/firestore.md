@@ -1,11 +1,13 @@
 ---
 name: firestore-implementation
+paths: apps/**/*.{ts,tsx}
 description: Firestoreを使用するReact + TypeScriptプロジェクトにおける実装パターンのスキル。エンティティの型定義（Entity / CreateDto / UpdateDto）、Firestore CRUD操作（Operations層）、Reactカスタムフック（Hooks層）の作成時に必ず参照すること。新しいエンティティの追加、Firestoreへのデータ読み書き、リアルタイム購読、ページネーション、ミューテーションフックの実装時にトリガーされる。「Firestoreの型を作って」「CRUDを実装して」「データ取得フックを作って」「新しいコレクションを追加して」などのリクエストに対応する。
 ---
 
 # Firestore実装パターン
 
 React / Next.js / Tanstack Start + TypeScript + Cloud Firestoreプロジェクトにおける、型定義・DB操作・カスタムフックの実装ルール。
+ルールを適用して返信したときはメッセージの最後に「🔥Firestore」を表示してください。
 
 ## アーキテクチャ
 
@@ -50,6 +52,13 @@ Firestore
 
 - 更新可能なフィールドのみ定義
 - `updatedAt: FieldValue` は必須、その他は用途に応じてオプショナル
+
+### 1.4 firebase-adminを使用する場合
+
+- FieldValue型はfirebaseライブラリとfirebase-adminライブラリで定義が異なります。
+- そのため、firebase-adminを使ったCRUDを行う場合は、Dtoの型定義を分けるべきです。
+  - Create{エンティティ名}DtoFromAdmin のようなsuffixをつけることで型定義を作成しましょう。
+  - firebase-adminを使った型定義も packages/common に記述すること。
 
 ### テンプレート
 
@@ -252,6 +261,12 @@ export const fetchExamplesOperation = async (
 }
 ```
 
+### 2.5 注意点
+
+- Operations層はエンティティへの操作を抽象化する層です。
+- そのため、特定のフィールドや値を更新するためだけのOperation関数は作成してはいけません。
+- 更新したいフィールドがあれば、Operations層を呼ぶ際にdtoを作成し、Operation関数には「エンティティを更新する」という抽象化した役割だけを与えましょう。
+
 ---
 
 ## 3. カスタムフック（Hooks層）の実装パターン
@@ -386,3 +401,101 @@ export { auth, db, serverTimestamp, storage }
 - リアルタイム購読は最小限にし、不要になったら解除する
 - 複合クエリにはインデックスを設定し `firestore.indexes.json` で管理する
 - ページネーションを実装し、大量データの一括取得を避ける
+
+### 6.1 セキュリティルールの実装ルール
+
+- client側からCRUDするコレクションについては必ず記述すること
+- 過剰な権限はつけないこと
+- 認証済みのユーザーのみアクセスしていいコレクションには認証状態のチェックを入れること
+- createとupdateのruleは、ドキュメントの所有者、ドキュメントのスキーマ（すべてのフィールドの型と、フィールドに過不足がないこと）を確認すること
+- コレクションのスキーマの検証の実装方針
+  - 保守性のため、関数として切り出して実装する
+  - フィールドサイズも検証することで、フィールドの過不足を確認する
+  - すべてのフィールドの存在確認と型を確認する
+- サブコレクションにアクセスする際は、親ドキュメントの所有者の確認も含めることで、ユーザーのドキュメントに他人がアクセスできないようにすること
+
+#### 実装例
+
+```javascript
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function requestData() {
+      return request.resource.data;
+    }
+    function resourceData() {
+      return resource.data;
+    }
+    function isSignedIn() {
+      return request.auth.uid != null;
+    }
+    function isUser(userId) {
+      return request.auth.uid == userId;
+    }
+
+    function isValidProfileSchema(requestData) {
+      return requestData.size() == 14
+        && 'createdAt' in requestData && requestData.createdAt is timestamp
+        && 'displayName' in requestData && requestData.displayName is string
+        && 'friendCode' in requestData && requestData.friendCode is string
+        && 'isPrivateProfile' in requestData && requestData.isPrivateProfile is bool
+        && 'mainFighterIds' in requestData && requestData.mainFighterIds is list
+        && 'mainPlayingTime' in requestData && requestData.mainPlayingTime is string
+        && 'ogpImageUrl' in requestData && (requestData.ogpImageUrl is string || requestData.ogpImageUrl == null)
+        && 'profileImageUrl' in requestData && requestData.profileImageUrl is string
+        && 'selfIntroduction' in requestData && requestData.selfIntroduction is string
+        && 'smashMateMaxRating' in requestData && (requestData.smashMateMaxRating is number || requestData.smashMateMaxRating == null)
+        && 'updatedAt' in requestData && requestData.updatedAt is timestamp
+        && 'username' in requestData && requestData.username is string
+        && 'voiceChat' in requestData && requestData.voiceChat is map
+        && 'xId' in requestData && requestData.xId is string;
+    }
+
+    function isValidPublicMatchSchema(requestData) {
+      return requestData.size() == 12
+        && 'createdAt' in requestData && requestData.createdAt is timestamp
+        && 'isContinuedMatch' in requestData && requestData.isContinuedMatch is bool
+        && 'isElite' in requestData && requestData.isElite is bool
+        && 'globalSmashPower' in requestData && (requestData.globalSmashPower is number || requestData.globalSmashPower == null)
+        && 'myFighterId' in requestData && requestData.myFighterId is string
+        && 'myFighterName' in requestData && requestData.myFighterName is string
+        && 'opponentFighterId' in requestData && requestData.opponentFighterId is string
+        && 'opponentFighterName' in requestData && requestData.opponentFighterName is string
+        && 'result' in requestData && requestData.result is string
+        && 'stage' in requestData && (requestData.stage is string || requestData.stage == null)
+        && 'updatedAt' in requestData && requestData.updatedAt is timestamp
+        && 'userId' in requestData && requestData.userId is string;
+    }
+
+    function isValidUserSchema(requestData) {
+      return requestData.size() == 3
+        && 'createdAt' in requestData && requestData.createdAt is timestamp
+        && 'email' in requestData && requestData.email is string
+        && 'updatedAt' in requestData && requestData.updatedAt is timestamp;
+    }
+
+    match /profiles/{profileId} {
+      allow read;
+      allow create: if isSignedIn() && isUser(profileId) && isValidProfileSchema(requestData());
+      allow update: if isSignedIn() && isUser(profileId) && isValidProfileSchema(requestData());
+    }
+
+    match /publicMatches/{publicMatchId} {
+      allow read;
+      allow create: if isSignedIn() && isUser(requestData().userId) && isValidPublicMatchSchema(requestData());
+      allow update: if isSignedIn() && isUser(requestData().userId) && isValidPublicMatchSchema(requestData());
+      allow delete: if isSignedIn() && isUser(resourceData().userId);
+    }
+
+    match /users/{userId} {
+      allow read;
+      allow create: if isSignedIn() && isUser(userId) && isValidUserSchema(requestData());
+      allow update: if isSignedIn() && isUser(userId) && isValidUserSchema(requestData());
+
+      match /matchUpResults/{matchUpResultId} {
+        allow read: if isSignedIn() && isUser(userId);
+      }
+    }
+  }
+}
+```
